@@ -1,0 +1,79 @@
+﻿@page
+@model RHStaging.Pages.Properties.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Properties Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Owner.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].PropertyType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].NumOfBedRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].NumOfBathRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Sqft)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Properties)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfBedRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfBathRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sqft)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PropertyID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PropertyID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PropertyID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
