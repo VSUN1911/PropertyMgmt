@@ -1,0 +1,70 @@
+﻿@page
+@model RHStaging.Pages.Leases.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Lease</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Lease.LeaseID" />
+            <div class="form-group">
+                <label asp-for="Lease.PropertyID" class="control-label"></label>
+                <select asp-for="Lease.PropertyID" class="form-control" asp-items="ViewBag.PropertyID"></select>
+                <span asp-validation-for="Lease.PropertyID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.RenterID" class="control-label"></label>
+                <select asp-for="Lease.RenterID" class="form-control" asp-items="ViewBag.RenterID"></select>
+                <span asp-validation-for="Lease.RenterID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.Lease_start_date" class="control-label"></label>
+                <input asp-for="Lease.Lease_start_date" class="form-control" />
+                <span asp-validation-for="Lease.Lease_start_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.Lease_end_date" class="control-label"></label>
+                <input asp-for="Lease.Lease_end_date" class="form-control" />
+                <span asp-validation-for="Lease.Lease_end_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.Security_deposit" class="control-label"></label>
+                <input asp-for="Lease.Security_deposit" class="form-control" />
+                <span asp-validation-for="Lease.Security_deposit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.Monthly_rent" class="control-label"></label>
+                <input asp-for="Lease.Monthly_rent" class="form-control" />
+                <span asp-validation-for="Lease.Monthly_rent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.Lease_term" class="control-label"></label>
+                <input asp-for="Lease.Lease_term" class="form-control" />
+                <span asp-validation-for="Lease.Lease_term" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lease.Commission_Rate" class="control-label"></label>
+                <input asp-for="Lease.Commission_Rate" class="form-control" />
+                <span asp-validation-for="Lease.Commission_Rate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

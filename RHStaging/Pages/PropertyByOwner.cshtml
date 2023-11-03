@@ -1,0 +1,32 @@
+﻿@page
+@model RHStaging.Pages.PropertyByOwner
+
+@{
+    ViewData["Title"] = "Properties by Owner";
+}
+
+<h2>Properties by Owner</h2>
+
+<table>
+    <tr>
+        <th>
+            Owner
+        </th>
+
+        <th>
+            Properties # 
+        </th>
+    </tr>
+
+    @foreach (var item in Model.PropsGroupbyOwner)
+    {
+        <tr>            
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerName)
+            </td>
+            <td>
+                @item.PropertyCount
+            </td>
+        </tr>
+    }
+</table>

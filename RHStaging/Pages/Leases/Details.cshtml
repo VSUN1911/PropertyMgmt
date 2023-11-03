@@ -1,0 +1,67 @@
+﻿@page
+@model RHStaging.Pages.Leases.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Lease</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Lease_start_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Lease_start_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Lease_end_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Lease_end_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Security_deposit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Security_deposit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Monthly_rent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Monthly_rent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Lease_term)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Lease_term)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Commission_Rate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Commission_Rate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Property)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Property.PropertyID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lease.Renter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lease.Renter.RenterID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Lease?.LeaseID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

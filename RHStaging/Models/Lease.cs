@@ -14,8 +14,8 @@ namespace RHStaging.Models
 
     public enum Commission_rate : int
     {
-        Seven = 7,
-        Eight = 8
+        SevenPercent = 7,
+        EightPercent = 8
     }
     public class Lease
     {

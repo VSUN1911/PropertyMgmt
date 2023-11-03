@@ -1,0 +1,96 @@
+﻿@page
+@model RHStaging.Pages.Leases.IndexModel
+
+@{
+    ViewData["Title"] = "Leases";
+}
+
+<h1>Leases</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+@* method 'get' in the form tag caused the query string to be generated, thus URL can be bookmarked *@
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.LeaseWithOwnerNames[0].OwnerName)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leases[0].Lease_start_date)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort" asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Leases[0].Lease_end_date)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leases[0].Security_deposit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leases[0].Monthly_rent)                
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leases[0].Lease_term)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Leases[0].Commission_Rate)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.LeaseWithOwnerNames[0].RenterName)
+            </th> 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LeaseWithOwnerNames) {
+        <tr>
+            <td>
+                  @* @Html.DisplayFor(modelItem => item.Property.Owner.FullName) *@
+                  @Html.DisplayFor(modelItem => item.OwnerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lease.Lease_start_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lease.Lease_end_date)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Lease.Security_deposit)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Lease.Monthly_rent)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Lease.Lease_term)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Lease.Commission_Rate)
+            </td>
+
+             <td>
+                @Html.DisplayFor(modelItem => item.RenterName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Lease.LeaseID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Lease.LeaseID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Lease.LeaseID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

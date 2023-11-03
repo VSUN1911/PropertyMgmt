@@ -46,9 +46,9 @@ namespace RHStaging.Data
 
             var leases = new Lease[]
             {
-                new Lease{  RenterID=2, PropertyID=3, Commission_Rate=Commission_rate.Seven
+                new Lease{  RenterID=2, PropertyID=3, Commission_Rate=Commission_rate.SevenPercent
                            , Lease_start_date=DateTime.Parse("2023-03-04"), Lease_end_date=DateTime.Parse("2024-03-04"), Monthly_rent=3000, Security_deposit=3000  },
-                new Lease{  RenterID=3, PropertyID=2, Commission_Rate=Commission_rate.Seven
+                new Lease{  RenterID=3, PropertyID=2, Commission_Rate=Commission_rate.EightPercent
                            , Lease_start_date=DateTime.Parse("2023-12-14"), Lease_end_date=DateTime.Parse("2024-12-13"), Monthly_rent=2700, Security_deposit=2700  },
             };
 
