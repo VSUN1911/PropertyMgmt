@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Owner.OwnerID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Properties[0].Owner.FullName)
             </th>
             <th>
@@ -44,6 +47,9 @@
         @foreach (var item in Model.Properties)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.OwnerID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Owner.FullName)
             </td>

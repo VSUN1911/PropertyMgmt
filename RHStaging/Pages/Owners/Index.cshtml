@@ -27,6 +27,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Owners[0].OwnerID)
+            </th>
+            <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-currentFilter="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Owners[0].LastName)
                 </a>
@@ -45,6 +48,9 @@
     <tbody>
         @foreach (var item in Model.Owners) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>

@@ -5,6 +5,7 @@ namespace RHStaging.Models
 {
     public class Owner
     {
+        [Display(Name = "Owner_ID")]
         public int OwnerID { get; set; }
 
         [Required]
@@ -24,7 +25,7 @@ namespace RHStaging.Models
         public DateTime MemberSince { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "EMail")]
+        [Display(Name = "Email")]
         [RegularExpression(@"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

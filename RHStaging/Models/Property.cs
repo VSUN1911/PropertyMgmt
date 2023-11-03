@@ -68,7 +68,7 @@ namespace RHStaging.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "Number")]
+        [Display(Name = "Prop_ID")]
         public int PropertyID { get; set; }
         public PropertyType? PropertyType { get; set; }
 
@@ -82,18 +82,18 @@ namespace RHStaging.Models
         public string City { get; set; }
         public State? State { get; set; }
         public string ZipCode { get; set; }
+
+        [Display(Name = "#BedRooms")]
         public int NumOfBedRooms { get; set; }
+
+        [Display(Name = "#BathRooms")]
         public int NumOfBathRooms { get; set; }
         public int Sqft { get; set; }
 
         //public ICollection<Lease> Leases { get; set; }
         public Lease Lease { get; set; }
         public Owner Owner { get; set; }
-
-        /*
-          public int YearBuilt { get; set; }
-        */
-
-
+       
+        public int? YearBuilt { get; set; }
     }
 }
