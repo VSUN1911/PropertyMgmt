@@ -32,7 +32,7 @@ namespace RHStaging.Pages.Owners
 
             Owner = await _context.Owners                
                 .Include(o => o.Properties)
-                .ThenInclude(o => o.Leases)
+                .ThenInclude(o => o.Lease)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.OwnerID == id); 
 

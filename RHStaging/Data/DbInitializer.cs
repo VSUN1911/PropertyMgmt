@@ -12,49 +12,159 @@ namespace RHStaging.Data
                 return;   // DB has been seeded
             }
 
+            #region Create mock up owners 
+            var 趙榮 = new Owner
+            {
+                LastName = "張",
+                FirstMidName = "趙榮",
+                MemberSince = DateTime.Parse("2023-10-31"),
+                Email = "xyz@hmail.com",
+                Phone = "123-456-7890"
+            };
+
+            var 信羊 = new Owner
+            {
+                LastName = "黃",
+                FirstMidName = "信羊",                
+                MemberSince = DateTime.Parse("2023-1-28"),
+                Email = "abc@home.com",
+                Phone = "980-765-4321"
+            };
+
+            var MingChung = new Owner
+            {
+                FirstMidName = "MingChung",
+                LastName = "Chen",
+                MemberSince = DateTime.Parse("2022-10-31")
+            };
+
+            var Mozart = new Owner
+            {
+                FirstMidName = "Mozart",
+                LastName = "Wolfgang",
+                MemberSince = DateTime.Parse("1995-10-31")
+            };
+
             var owners = new Owner[]
             {
-                // TODO: fix display on page for member since (2023-00-31) while input is (2023-10-31)
-                new Owner{FirstMidName="趙榮", LastName="張", MemberSince=DateTime.Parse("2023-10-31"), Email="xyz@hmail.com", Phone="123-456-7890"},
-                new Owner{FirstMidName="信羊", LastName="黃", MemberSince=DateTime.Parse("2023-1-28"), Email="abc@home.com", Phone="980-765-4321"},
-                new Owner{FirstMidName="MingChung", LastName="Chen", MemberSince=DateTime.Parse("2022-10-31")},
-                new Owner{FirstMidName="Mozart", LastName="Wolfgang", MemberSince=DateTime.Parse("1995-10-31")},
+                趙榮,
+                信羊,
+                MingChung,
+                Mozart,
             };
 
-            context.Owners.AddRange(owners);
-            context.SaveChanges();
+            context.AddRange(owners);
+            #endregion
 
-            var properties = new Property[]
+            #region Create Mock up Properties
+            var prop1 = new Property
             {
-                new Property{ OwnerID = 1, Address="203 123th St", City="Bellevue", NumOfBathRooms=3, NumOfBedRooms=2, PropertyType=PropertyType.SingleFamily, Sqft=1234, State=State.Washington, ZipCode="98006", },
-                new Property{ OwnerID = 1, Address="530 Saseme Street", City="Bellevue", NumOfBathRooms=5, NumOfBedRooms=4, PropertyType=PropertyType.SingleFamily, Sqft=5634, State=State.Washington, ZipCode="98006", },
-                new Property{ OwnerID = 3, Address="36839 156th St", City="Redmond", NumOfBathRooms=2, NumOfBedRooms=2, PropertyType=PropertyType.Condo, Sqft=984, State=State.Washington, ZipCode="98056" }
+                //OwnerID = 1,
+                Owner = 趙榮,
+                Address = "203 123th St",
+                City = "Bellevue",
+                NumOfBathRooms = 3,
+                NumOfBedRooms = 2,
+                PropertyType = PropertyType.SingleFamily,
+                Sqft = 1234,
+                State = State.Washington,
+                ZipCode = "98006",                 
             };
 
-            context.Properties.AddRange(properties);
-            context.SaveChanges();
+            var prop2 = new Property
+            {
+                //OwnerID = 1,
+                Owner = MingChung,
+                Address = "530 Saseme Street",
+                City = "Bellevue",
+                NumOfBathRooms = 5,
+                NumOfBedRooms = 4,
+                PropertyType = PropertyType.SingleFamily,
+                Sqft = 5634,
+                State = State.Washington,
+                ZipCode = "98006",
+            };
+
+            var prop3 = new Property
+            {
+                Owner = 趙榮,
+                Address = "36839 156th St",
+                City = "Redmond",
+                NumOfBathRooms = 2,
+                NumOfBedRooms = 2,
+                PropertyType = PropertyType.Condo,
+                Sqft = 984,
+                State = State.Washington,
+                ZipCode = "98056"
+            };
+
+            var propertyes = new Property[]
+                { prop1, prop2, prop3 };
+
+            context.AddRange(propertyes);
+            #endregion
+
+            #region Mock up Renters 
+            var Dufrane = new Renter
+            {
+                FirstMidName = "Andy",
+                LastName = "Dufrane",
+                MemberSince = DateTime.Parse("2019-10-3")
+            };
+
+            var Huang = new Renter
+            {
+                FirstMidName = "Joyce",
+                LastName = "Huang",
+                MemberSince = DateTime.Parse("2009-1-3")
+            };
+
+            var Neruda = new Renter
+            {
+                FirstMidName = "Xavier",
+                LastName = "Neruda",
+                MemberSince = DateTime.Parse("2014-7-3")
+            };
 
             var renters = new Renter[]
+                {Dufrane, Huang, Neruda };
+
+            context.AddRange(renters);
+            #endregion
+
+            #region Mock up Leases
+            var lease1 = new Lease
             {
-                new Renter{FirstMidName="Andy", LastName="Dufrane", MemberSince=DateTime.Parse("2019-10-3")},
-                new Renter{FirstMidName="Joyce", LastName="Huang", MemberSince=DateTime.Parse("2009-1-3")},
-                new Renter{FirstMidName="Xavier", LastName="Neruda", MemberSince=DateTime.Parse("2014-7-3")},
+                Owner = 趙榮,
+                Renter = Dufrane,
+                //RenterID = 2,
+                //PropertyID = 3,
+                Commission_Rate = Commission_rate.SevenPercent,
+                Lease_start_date = DateTime.Parse("2023-03-04"),
+                Lease_end_date = DateTime.Parse("2024-03-04"),
+                Monthly_rent = 3000,
+                Security_deposit = 3000,
             };
 
-            context.Renters.AddRange(renters);
-            context.SaveChanges();
-
-            var leases = new Lease[]
+            var lease2 = new Lease
             {
-                new Lease{  RenterID=2, PropertyID=3, Commission_Rate=Commission_rate.SevenPercent
-                           , Lease_start_date=DateTime.Parse("2023-03-04"), Lease_end_date=DateTime.Parse("2024-03-04"), Monthly_rent=3000, Security_deposit=3000  },
-                new Lease{  RenterID=3, PropertyID=2, Commission_Rate=Commission_rate.EightPercent
-                           , Lease_start_date=DateTime.Parse("2023-12-14"), Lease_end_date=DateTime.Parse("2024-12-13"), Monthly_rent=2700, Security_deposit=2700  },
+                //RenterID = 3,
+                //PropertyID = 2,
+                Owner = Mozart,
+                Renter = Neruda,
+                Commission_Rate = Commission_rate.EightPercent,
+                Lease_start_date = DateTime.Parse("2023-12-14"),
+                Lease_end_date = DateTime.Parse("2024-12-13"),
+                Monthly_rent = 2700,
+                Security_deposit = 2700
             };
 
-            context.Leases.AddRange(leases);
-            context.SaveChanges();
+            var leases = new Lease[] { lease1, lease2 };
 
+            context.AddRange(leases);
+            #endregion
+
+            context.SaveChanges();
         }
     }
 }

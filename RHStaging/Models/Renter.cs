@@ -1,12 +1,21 @@
-﻿namespace RHStaging.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace RHStaging.Models
 {
     public class Renter
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RenterID { get; set; }
+
+        [ForeignKey("Lease")]
+        public int? LeaseID { get; set; }
+
         public string LastName { get; set; }
         public string FirstMidName { get; set; }
         public DateTime MemberSince { get; set; }
 
-        public ICollection<Lease> Leases { get; set; }
+        public Lease Lease { get; set; }
     }
 }

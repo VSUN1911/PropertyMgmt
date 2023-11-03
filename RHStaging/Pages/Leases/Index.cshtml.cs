@@ -48,48 +48,17 @@ namespace RHStaging.Pages.Leases
 
             CurrentFilter = searchString;
 
-            //IQueryable<Lease> leaseIQ = from l in _context.Leases
-            //select l;
-
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    // can not use o.Property.Owner.FullName as that entity is not in DB column but a computed one
-            //    leaseIQ = leaseIQ.Where(o => o.Property.Owner.LastName.ToUpper().Contains(CurrentFilter.ToUpper())
-            //                      || o.Property.Owner.FirstMidName.ToUpper().Contains(CurrentFilter.ToUpper()));
-            //}
-
-            //switch (sortOrder)
-            //{
-            //    case "name_desc":
-            //        leaseIQ = leaseIQ.OrderByDescending(l => l.Property.Owner.LastName);
-            //        break;
-            //    case "Date":
-            //        leaseIQ = leaseIQ.OrderBy(l => l.Lease_end_date);
-            //        break;
-            //    case "date_desc":
-            //        leaseIQ = leaseIQ.OrderByDescending(l => l.Lease_end_date);
-            //        break;
-            //    default:
-            //        leaseIQ = leaseIQ.OrderBy(l => l.Property.Owner.LastName);
-            //        break;
-            //}
-
-            //var pageSize = Configuration.GetValue("PageSize", 5);
-
-            //Leases = await PaginatedList<Lease>.CreateAsync(
-            //    leaseIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
-
             IQueryable<LeaseWithOwnerName> leaseWithOwnerNameIQ =
                 from lease in _context.Leases
-                join property in _context.Properties on lease.PropertyID equals property.PropertyID
-                join owner in _context.Owners on property.OwnerID equals owner.OwnerID
-                join renter in _context.Renters on lease.RenterID equals renter.RenterID
+                //join property in _context.Properties on lease.PropertyID equals property.PropertyID
+                //join owner in _context.Owners on property.OwnerID equals owner.OwnerID
+                //join renter in _context.Renters on lease.RenterID equals renter.RenterID
                 select new LeaseWithOwnerName
                 {
                     Lease = lease,
-                    OwnerName = owner.FullName,
-                    OwnerLastName = owner.LastName,
-                    RenterName = renter.FirstMidName
+                    OwnerName = lease.Owner.FullName,
+                    OwnerLastName = lease.Owner.LastName,
+                    RenterName = lease.Renter.FirstMidName
                 };
 
 
@@ -120,15 +89,6 @@ namespace RHStaging.Pages.Leases
 
             LeaseWithOwnerNames = await PaginatedList<LeaseWithOwnerName>.CreateAsync(
                 leaseWithOwnerNameIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
-
-            //if (_context.Leases != null)
-            //{
-            //    Leases = await _context.Leases
-            //    .Include(l => l.Property)
-            //    .ThenInclude(l => l.Owner)
-            //    .Include(l => l.Renter)
-            //    .ToListAsync();
-            //}
         }
     }
 }

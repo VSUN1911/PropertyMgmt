@@ -30,9 +30,13 @@ namespace RHStaging.Models
          * Foreign key properties can also be named <primary key property name>. 
          * For example, CourseID since the Course entity's primary key is CourseID.
          */
-        public int PropertyID { get; set; }
+
+        [ForeignKey("Property")]
+        public int? PropertyID { get; set; }
         //public int OwnerID { get; set; }
-        public int RenterID { get; set; }
+
+        [ForeignKey("Renter")]
+        public int? RenterID { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
@@ -62,7 +66,7 @@ namespace RHStaging.Models
 
 
         public Property Property { get; set; }
-        //public Owner Owner { get; set; }
+        public Owner Owner { get; set; }
         public Renter Renter { get; set; }
 
     }

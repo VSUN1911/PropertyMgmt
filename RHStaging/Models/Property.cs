@@ -72,8 +72,11 @@ namespace RHStaging.Models
         public int PropertyID { get; set; }
         public PropertyType? PropertyType { get; set; }
 
+        [ForeignKey("Owner")]
         public int OwnerID { get; set; }
-        public int LeaseID { get; set; }
+
+        [ForeignKey("Lease")]
+        public int? LeaseID { get; set; }
 
         public string Address { get; set; }
         public string City { get; set; }
@@ -83,7 +86,8 @@ namespace RHStaging.Models
         public int NumOfBathRooms { get; set; }
         public int Sqft { get; set; }
 
-        public ICollection<Lease> Leases { get; set; }
+        //public ICollection<Lease> Leases { get; set; }
+        public Lease Lease { get; set; }
         public Owner Owner { get; set; }
 
         /*
