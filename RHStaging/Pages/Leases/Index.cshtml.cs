@@ -50,14 +50,12 @@ namespace RHStaging.Pages.Leases
 
             IQueryable<LeaseWithOwnerName> leaseWithOwnerNameIQ =
                 from lease in _context.Leases
-                //join property in _context.Properties on lease.PropertyID equals property.PropertyID
-                //join owner in _context.Owners on property.OwnerID equals owner.OwnerID
-                //join renter in _context.Renters on lease.RenterID equals renter.RenterID
                 select new LeaseWithOwnerName
                 {
                     Lease = lease,
                     OwnerName = lease.Owner.FullName,
                     OwnerLastName = lease.Owner.LastName,
+                    OwnerFirstMidName = lease.Owner.FirstMidName,
                     Address = lease.Property.Address,
                     RenterName = lease.Renter.FirstMidName
                 };
@@ -65,9 +63,8 @@ namespace RHStaging.Pages.Leases
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                // can not use o.Property.Owner.FullName as that entity is not in DB column but a computed one
-                leaseWithOwnerNameIQ = leaseWithOwnerNameIQ.Where(o => o.OwnerName.ToUpper().Contains(CurrentFilter.ToUpper())
-                                  || o.OwnerName.ToUpper().Contains(CurrentFilter.ToUpper()));
+                leaseWithOwnerNameIQ = leaseWithOwnerNameIQ.Where(o => o.OwnerLastName.ToUpper().Contains(CurrentFilter.ToUpper())
+                                    || o.OwnerFirstMidName.ToUpper().Contains(CurrentFilter.ToUpper()));
             }
 
             switch (sortOrder)
