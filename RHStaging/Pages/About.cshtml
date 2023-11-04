@@ -33,7 +33,7 @@
             <td>
                 @foreach (var propID in item.PropertyIDList)
                 {
-                    <a class="menu-link custom-link" asp-area="" asp-page="/Properties/Details" asp-reoute-id="@propID">@Html.DisplayFor(modelItem => propID)</a>
+                    <a class="menu-link custom-link" asp-area="" asp-page="/Properties/Details" asp-route-id="@propID">@Html.DisplayFor(modelItem => propID)</a>
                     @:&nbsp; <!-- Adding a non-breaking space -->
                 }
             </td>            
