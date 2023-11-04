@@ -2,40 +2,51 @@
 @model RHStaging.Pages.AboutModel
 
 @{
-    ViewData["Title"] = "Leases Statistics";
+    ViewData["Title"] = "Leases Schedule";
 }
 
-<h2>Leases & Owner Statistics</h2>
+<h2>Leases Schedule</h2>
 
 <table>
     <tr>
-
-@*      
         <th>
-            Lease Start Date
+            Lease End 
         </th>
- *@
         <th>
-            Lease End Date
+            Properties ID
         </th>
-
         <th>
-            Properties
+            #Properties
+        </th>
+        <th> </th> <!-- Empty cell for spacing -->
+        <th>
+            Lease ID
         </th>
     </tr>
 
     @foreach (var item in Model.Properties)
     {
         <tr>
-            @*
-            <td>
-                @Html.DisplayFor(modelItem => item.LeaseStartDate)
-            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.LeaseEndDate)
             </td>
             <td>
+                @foreach (var propID in item.PropertyIDList)
+                {
+                    <a class="menu-link custom-link" asp-area="" asp-page="/Properties/Details" asp-reoute-id="@propID">@Html.DisplayFor(modelItem => propID)</a>
+                    @:&nbsp; <!-- Adding a non-breaking space -->
+                }
+            </td>            
+            <td>
                 @item.PropertyCount
+            </td>
+            <td> </td> <!-- Empty cell for spacing -->
+            <td>
+                @foreach (var leaseID in item.LeaseIDList)
+                {
+                    <a class="menu-link custom-link" asp-page="/Leases/Details" asp-route-id="@leaseID">@Html.DisplayFor(modelItem => leaseID)</a>                    
+                    @:&nbsp; <!-- Adding a non-breaking space -->
+                }
             </td>
         </tr>
     }

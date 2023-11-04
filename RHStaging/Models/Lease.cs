@@ -14,8 +14,10 @@ namespace RHStaging.Models
 
     public enum Commission_rate : int
     {
+        FivePercent = 5,
         SevenPercent = 7,
-        EightPercent = 8
+        EightPercent = 8,
+        TenPercent = 10,
     }
     public class Lease
     {
@@ -39,14 +41,12 @@ namespace RHStaging.Models
         public int? RenterID { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
-               ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
         [Display(Name = "Lease Start Date")]
         public DateTime Lease_start_date { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
-               ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
         [Display(Name = "Lease End Date")]
         public DateTime Lease_end_date { get; set; }
 

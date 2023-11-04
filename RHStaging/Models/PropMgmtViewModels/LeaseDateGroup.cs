@@ -10,6 +10,8 @@ namespace RHStaging.Models.PropMgmtViewModels
         //public DateTime LeaseStartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime LeaseEndDate { get; set; }
+        public int?[] PropertyIDList { get; set; }
+        public int[] LeaseIDList { get; set; }
         public int PropertyCount { get; set; }
     }
 }

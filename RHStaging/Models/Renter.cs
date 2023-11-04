@@ -13,6 +13,8 @@ namespace RHStaging.Models
         public int? LeaseID { get; set; }
 
         public string LastName { get; set; }
+
+        [Display(Name = "FirstName")]
         public string FirstMidName { get; set; }
         public DateTime MemberSince { get; set; }
 

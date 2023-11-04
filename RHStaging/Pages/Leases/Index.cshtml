@@ -31,6 +31,9 @@
                 </a>
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.LeaseWithOwnerNames[0].Address)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Leases[0].Lease_start_date)
             </th>
             <th>
@@ -64,6 +67,9 @@
                   @Html.DisplayFor(modelItem => item.OwnerName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Lease.Lease_start_date)
             </td>
             <td>
@@ -94,3 +100,23 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.LeaseWithOwnerNames.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.LeaseWithOwnerNames.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.LeaseWithOwnerNames.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.LeaseWithOwnerNames.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

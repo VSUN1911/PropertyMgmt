@@ -14,7 +14,10 @@ namespace RHStaging.Pages
     public class PropertyByOwner : PageModel
     {
         private readonly PropMgmtContext _context;
+        
         public IList<OwnerPropertyInfo> PropsGroupbyOwner { get; set; }
+        public int totalPropertiesCount;
+        public int totalOwnersCount;
 
         public PropertyByOwner(PropMgmtContext context)
         {
@@ -36,6 +39,13 @@ namespace RHStaging.Pages
                 };
 
             PropsGroupbyOwner = await data.AsNoTracking().ToListAsync();
+            totalOwnersCount = _context.Owners
+                                .Where(owner => owner.LastName.ToLower() != "unknown")
+                                .Count();
+
+            totalPropertiesCount = _context.Properties
+                                .Where(prop => prop.Owner.LastName.ToLower() != "unknown")
+                                .Count(); 
         }
     }
 }

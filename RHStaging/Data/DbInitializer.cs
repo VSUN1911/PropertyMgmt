@@ -98,6 +98,19 @@ namespace RHStaging.Data
                 ZipCode = "98056"
             };
 
+            var prop4 = new Property
+            {
+                Owner = Mozart,
+                Address = "255 Bluepoint Street",
+                City = "Kirkland",
+                NumOfBathRooms = 5,
+                NumOfBedRooms = 4,
+                PropertyType = PropertyType.SingleFamily,
+                Sqft = 4634,
+                State = State.Washington,
+                ZipCode = "98026",
+            };
+
             var propertyes = new Property[]
                 { prop1, prop2, prop3 };
 
@@ -137,8 +150,7 @@ namespace RHStaging.Data
             {
                 Owner = 趙榮,
                 Renter = Dufrane,
-                //RenterID = 2,
-                //PropertyID = 3,
+                Property = prop3,   // TODO: make sure property belongs to owner 
                 Commission_Rate = Commission_rate.SevenPercent,
                 Lease_start_date = DateTime.Parse("2023-03-04"),
                 Lease_end_date = DateTime.Parse("2024-03-04"),
@@ -151,6 +163,7 @@ namespace RHStaging.Data
                 //RenterID = 3,
                 //PropertyID = 2,
                 Owner = Mozart,
+                Property = prop4,
                 Renter = Neruda,
                 Commission_Rate = Commission_rate.EightPercent,
                 Lease_start_date = DateTime.Parse("2023-12-14"),

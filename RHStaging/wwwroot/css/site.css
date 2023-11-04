@@ -20,3 +20,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* site.css */
+.custom-link {
+    color: #ff0000; /* Set the text color to red */
+    font-size: 16px; /* Set the font size to 16 pixels */
+    font-family: Arial, sans-serif; /* Set the font family */
+    /* Add more styles as needed */
+}

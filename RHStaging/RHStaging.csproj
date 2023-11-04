@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Renters\" />
+    <None Include="wwwroot\Images\NEOM-swimming.jpg" />
   </ItemGroup>
 
   <ItemGroup>

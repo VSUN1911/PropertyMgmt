@@ -1,60 +1,55 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RH Staging</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RHStaging.styles.css" asp-append-version="true" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Distance Star Property Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/RHStaging.styles.css" asp-append-version="true">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="top-bar bg-dark text-white py-2">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">RH Staging</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/PropertyByOwner">PropertyByOwner</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Owners/Index">Owners</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Properties/Index">Properties</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Leases/Index">Leases</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Renters/Index">Renters</a>
-                        </li>
-                    </ul>
-                </div>
+                <h1 class="text-center mb-0">Distance Star Property Management</h1>
+            </div>
+        </div>
+        <nav class="menu-bar bg-dark text-white">
+            <div class="container">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class="menu-link" asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" asp-area="" asp-page="/About">Schedule</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" asp-area="" asp-page="/PropertyByOwner">Property By Owner</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link custom-link" asp-area="" asp-page="/Owners/Index">Owners</a>
+                    </li>
+                    <li class "menu-item">
+                        <a class="menu-link custom-link" asp-area="" asp-page="/Properties/Index">Properties</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link custom-link" asp-area="" asp-page="/Leases/Index">Leases</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link custom-link" asp-area="" asp-page="/Renters/Index">Renters</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pt-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-dark text-white">
         <div class="container">
             &copy; 2023 - RH Staging - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>

@@ -33,7 +33,10 @@ using (var scope = app.Services.CreateScope())
 
     context.Database.EnsureCreated();
     // no need for ^^^ this as we move to DB migration
-    DbInitializer.Initialize(context);
+
+    //DbInitializer.Initialize(context);
+    PrivateDbInitializer.Initialize(context);
+
 }
 
 app.UseHttpsRedirection();

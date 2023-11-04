@@ -1,0 +1,77 @@
+﻿@page
+@model RHStaging.Pages.Renters.IndexModel
+
+@{
+    ViewData["Title"] = "Renters";
+}
+
+<h1>Renters</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@* method 'get' in the form tag caused the query string to be generated, thus URL can be bookmarked *@
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Renters[0].RenterID)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Renters[0].LastName)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Renters[0].FirstMidName)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort" asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Renters[0].MemberSince)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Renters[0].LeaseID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Renters) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RenterID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMidName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberSince)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lease.LeaseID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.RenterID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.RenterID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.RenterID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

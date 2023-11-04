@@ -2,31 +2,53 @@
 @model RHStaging.Pages.Properties.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Properties";
 }
 
-<h1>Properties :</h1>
+<h1>Properties</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+@* method 'get' in the form tag caused the query string to be generated, thus URL can be bookmarked *@
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Properties[0].PropertyID)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.AddressSort" asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Properties[0].Address)
+                </a>                
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Properties[0].Owner.OwnerID)
             </th>
             <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.OwnerSort" asp-route-currentFilter="@Model.CurrentFilter">
                 @Html.DisplayNameFor(model => model.Properties[0].Owner.FullName)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Properties[0].PropertyType)
-            </th>
+            </th> 
             <th>
-                @Html.DisplayNameFor(model => model.Properties[0].Address)
-            </th>
-            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.AddressSort" asp-route-currentFilter="@Model.CurrentFilter">
                 @Html.DisplayNameFor(model => model.Properties[0].City)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Properties[0].ZipCode)
@@ -48,6 +70,12 @@
         {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.PropertyID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Owner.OwnerID)
             </td>
             <td>
@@ -56,9 +84,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PropertyType)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
@@ -83,3 +109,23 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Properties.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Properties.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Properties.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Properties.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

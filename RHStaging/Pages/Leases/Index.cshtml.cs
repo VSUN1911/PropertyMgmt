@@ -58,6 +58,7 @@ namespace RHStaging.Pages.Leases
                     Lease = lease,
                     OwnerName = lease.Owner.FullName,
                     OwnerLastName = lease.Owner.LastName,
+                    Address = lease.Property.Address,
                     RenterName = lease.Renter.FirstMidName
                 };
 

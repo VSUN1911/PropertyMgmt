@@ -29,6 +29,8 @@ namespace RHStaging.Pages
                 select new LeaseDateGroup()
                 {
                     LeaseEndDate = dateGroup.Key,
+                    PropertyIDList = dateGroup.ToList().Select(i => i.PropertyID).ToArray(),
+                    LeaseIDList = dateGroup.ToList().Select(l => l.LeaseID).ToArray(),
                     PropertyCount = dateGroup.Count()
                 };
 
