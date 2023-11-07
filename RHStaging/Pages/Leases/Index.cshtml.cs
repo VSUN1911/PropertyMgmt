@@ -10,6 +10,7 @@ using RHStaging.Data;
 using RHStaging.Models;
 using Microsoft.Extensions.Configuration;
 using Humanizer.Localisation;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace RHStaging.Pages.Leases
 {
@@ -17,6 +18,10 @@ namespace RHStaging.Pages.Leases
     {
         private readonly RHStaging.Data.PropMgmtContext _context;
         private readonly IConfiguration Configuration;
+
+        public decimal totalRent;
+        public decimal avgRent;
+        public decimal commission;
 
         public IndexModel(RHStaging.Data.PropMgmtContext context, IConfiguration configuration)
         {
@@ -29,7 +34,7 @@ namespace RHStaging.Pages.Leases
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public PaginatedList<Lease> Leases { get;set; } = default!;
+        public PaginatedList<Lease> Leases { get; set; } = default!;
         public PaginatedList<LeaseWithOwnerName> LeaseWithOwnerNames { get; set; } = default!;
 
         public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
@@ -57,7 +62,9 @@ namespace RHStaging.Pages.Leases
                     OwnerLastName = lease.Owner.LastName,
                     OwnerFirstMidName = lease.Owner.FirstMidName,
                     Address = lease.Property.Address,
-                    RenterName = lease.Renter.FirstMidName
+                    RenterName = lease.Renter.FirstMidName,
+                    MonthlyRent = lease.Monthly_rent,
+                    Commission_Rate = (Commission_rate)lease.Commission_Rate,
                 };
 
 
@@ -87,6 +94,15 @@ namespace RHStaging.Pages.Leases
 
             LeaseWithOwnerNames = await PaginatedList<LeaseWithOwnerName>.CreateAsync(
                 leaseWithOwnerNameIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+
+            foreach (LeaseWithOwnerName i in leaseWithOwnerNameIQ)
+            {
+                totalRent += i.MonthlyRent;
+                commission += i.MonthlyRent * (int)i.Commission_Rate / 100;
+            }
+
+            avgRent = totalRent / leaseWithOwnerNameIQ.Count();
+
         }
     }
 }

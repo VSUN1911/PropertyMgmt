@@ -11,5 +11,9 @@ namespace RHStaging.Pages.Leases
         public string Address { get; set; }
         public string RenterName { get; set; }
 
+        public decimal MonthlyRent { get; set; }
+
+        public Commission_rate Commission_Rate { get; set; }
+
     }
 }

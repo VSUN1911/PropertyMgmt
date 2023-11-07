@@ -33,16 +33,29 @@ namespace RHStaging.Data
 
             var MingChung = new Owner
             {
-                FirstMidName = "MingChung",
                 LastName = "Chen",
-                MemberSince = DateTime.Parse("2022-10-31")
+                FirstMidName = "MingChung",
+                MemberSince = DateTime.Parse("2022-10-31"),
+                Email = "mingchungc@home.com",
+                Phone = "733-123-4567",
             };
 
             var Mozart = new Owner
             {
-                FirstMidName = "Mozart",
                 LastName = "Wolfgang",
-                MemberSince = DateTime.Parse("1995-10-31")
+                FirstMidName = "Mozart",
+                MemberSince = DateTime.Parse("1995-10-31"),
+                Email = "mwolfgang@gmail.com",
+                Phone = "206-557-7438",                
+            };
+
+            var 譽 = new Owner
+            {
+                LastName = "段",
+                FirstMidName = "譽",
+                MemberSince = DateTime.Parse("2023-01-02"),
+                Email = "yud@gmail.com",
+                Phone = "425-234-1988"
             };
 
             var owners = new Owner[]
@@ -51,6 +64,7 @@ namespace RHStaging.Data
                 信羊,
                 MingChung,
                 Mozart,
+                譽,
             };
 
             context.AddRange(owners);
@@ -59,7 +73,6 @@ namespace RHStaging.Data
             #region Create Mock up Properties
             var prop1 = new Property
             {
-                //OwnerID = 1,
                 Owner = 趙榮,
                 Address = "203 123th St",
                 City = "Bellevue",
@@ -73,7 +86,6 @@ namespace RHStaging.Data
 
             var prop2 = new Property
             {
-                //OwnerID = 1,
                 Owner = MingChung,
                 Address = "530 Saseme Street",
                 City = "Bellevue",
@@ -111,8 +123,13 @@ namespace RHStaging.Data
                 ZipCode = "98026",
             };
 
+            var prop5 = new Property { Owner = 譽, Address = "486 156th AVE SE", City = "Santa Monica", NumOfBathRooms = 3, NumOfBedRooms = 4, PropertyType = PropertyType.SingleFamily, Sqft = 16400, State = State.California, ZipCode = "90211" };
+            var prop6 = new Property { Owner = 譽, Address = "1832 17 miles drive", City = "Malibu", NumOfBathRooms = 3, NumOfBedRooms = 3, PropertyType = PropertyType.SingleFamily, Sqft = 3567, State = State.California, ZipCode = "90156" };
+            var prop7 = new Property { Owner = 譽, Address = "1000 acre street", City = "Napa Valley", NumOfBathRooms = 3, NumOfBedRooms = 2, PropertyType = PropertyType.SingleFamily, Sqft = 2300, State = State.Washington, ZipCode = "98404" };
+
+
             var propertyes = new Property[]
-                { prop1, prop2, prop3 };
+                { prop1, prop2, prop3, prop5, prop6, prop7 };
 
             context.AddRange(propertyes);
             #endregion
@@ -160,8 +177,6 @@ namespace RHStaging.Data
 
             var lease2 = new Lease
             {
-                //RenterID = 3,
-                //PropertyID = 2,
                 Owner = Mozart,
                 Property = prop4,
                 Renter = Neruda,
@@ -172,7 +187,10 @@ namespace RHStaging.Data
                 Security_deposit = 2700
             };
 
-            var leases = new Lease[] { lease1, lease2 };
+            var lease3 = new Lease { Owner = 譽, Renter = Neruda, Property = prop5, Commission_Rate = Commission_rate.EightPercent, Lease_start_date = DateTime.Parse("2023-05-15"), Lease_end_date = DateTime.Parse("2024-05-14"), Monthly_rent = 4000, Security_deposit = 2000, Lease_term = Lease_term.TwelveMonth };
+
+
+            var leases = new Lease[] { lease1, lease2, lease3};
 
             context.AddRange(leases);
             #endregion
