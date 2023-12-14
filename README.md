@@ -35,7 +35,7 @@ To run the Property Management Pages locally on your machine, follow these steps
    dotnet run
 
 4. **Access the Application:**
-   Open your web browser and navigate to http://localhost:5000.
+   Open your web browser and navigate to http://localhost:<e.g.port5000>.
 
    ## Contributing
    Contributions are welcomed. If you find any issues or have suggestions for improvement, please feel free to submit a pull request.
